@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Sail Boat | The Complete Voyage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        :root {
+            --light: #7DD5E9;
+            --dark: #217381;
+        }
+
+        /* LEMON MILK BOLD SIMULATION */
+        .font-lemon {
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        body {
+            background-color: var(--light);
+            background-image: url(/Untitled\ design.jpg);
+            color: var(--dark);
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            margin: 0;
+        }
+
+        /* 10-SECOND BACKGROUND COLOR TIDE */
+        .bg-animated {
+            background: linear-gradient(-45deg, #7DD5E9, #217381, #7DD5E9, #217381);
+            background-size: 400% 400%;
+            animation: tideShift 10s ease-in-out infinite;
+        }
+
+        @keyframes tideShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* DUO-TONE IMAGE FILTER (STRICT 2-COLORS) */
+        .duotone-filter {
+            filter: grayscale(100%) contrast(1.2) sepia(100%) hue-rotate(155deg) saturate(180%);
+        }
+
+        /* SPLASH SCREEN */
+        #splash {
+            position: fixed;
+            inset: 0;
+            background: var(--dark);
+            color: var(--light);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: opacity 1s ease;
+        }
+
+        .border-dark { border: 3px solid var(--dark); }
+        .bg-dark { background-color: var(--dark); }
+        .text-light { color: var(--light); }
+
+        /* SLIDESHOW */
+        .slide { display: none; width: 100%; height: 600px; object-fit: cover; }
+        .slide.active { display: block; }
+
+        /* AUDIO VISUALIZER */
+        .bar { width: 4px; background: var(--dark); margin: 0 2px; transition: height 0.1s; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="splash">
+        <h2 class="font-lemon text-5xl mb-4 text-center">Smart Sail Boat</h2>
+        <p class="font-lemon text-sm mb-12 opacity-80 tracking-[0.3em]"></p>
+        <button onclick="startVoyage()" class="border-4 border-light px-16 py-8 font-lemon text-3xl hover:bg-light hover:text-[#217381] transition-all">
+            BEGIN VOYAGE
+        </button>
+        <p class="mt-8 font-lemon text-xs opacity-50 italic underline uppercase">Feels the Oceans Waves</p>
+    </div>
+
+    <audio id="ocean-audio" loop>
+        <source src="/Sea Waves - Sound Effect.mp3" type="audio/mpeg">
+    </audio>
+
+    <nav class="fixed w-full z-50 px-10 py-6 flex justify-between items-center border-b-2 border-[#217381] bg-[#7DD5E9]">
+        <div class="flex items-center gap-4">
+    <img src="/logo.png" alt="Smart Sail Boat Logo" class="h-10 w-auto duotone-filter">
+    
+    <span class="font-lemon text-2xl font-black">SSB</span>
+</div>
+        <div class="hidden lg:flex items-center space-x-12 font-lemon text-sm font-black">
+            <a href="#about" class="hover:underline">About</a>
+            <a href="#boat" class="hover:underline">Sale</a>
+            <a href="#blog" class="hover:underline">Blog Post</a>
+            <a href="#social" class="hover:underline">Socials</a>
+            <div id="visualizer" class="flex items-end h-6 ml-4">
+                <div class="bar h-2"></div><div class="bar h-4"></div><div class="bar h-1"></div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="min-h-screen flex flex-col justify-center items-center text-center px-6 bg-animated border-b-4 border-dark">
+        <h1 class="font-lemon text-6xl md:text-[10rem] mb-4 font-black leading-none">
+            SMART SAIL BOAT<br> <span class="text-light">WAVES</span>
+        </h1>
+        <div class="h-3 w-64 bg-dark mb-10"></div>
+        <p class="max-w-xl font-lemon text-xl md:text-2xl font-black tracking-widest italic opacity-80">
+            OCEANS ARE OUR OASIS.
+        </p>
+    </section>
+
+    <section id="about" class="py-32 px-10 max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
+        <div class="border-4 border-dark p-12 bg-transparent">
+            <h2 class="font-lemon text-5xl mb-8 font-black underline">Our About</h2>
+            <p class="font-lemon font-black text-lg leading-tight">
+                WE ARE THE ARCHITECTS OF THE OCEAN. BY MERGING THE RAW POWER OF WIND WITH PRECISE AI SYSTEMS, WE'VE CREATED THE SMARTEST VESSEL ON THE WATER. 
+            </p>
+        </div>
+        <div class="bg-dark text-light p-12 flex flex-col justify-center border-4 border-dark">
+            <h2 class="font-lemon text-3xl mb-6 font-black italic">Personal Information</h2>
+            <div class="h-1 w-full bg-light mb-6"></div>
+            <p class="font-lemon text-lg tracking-widest leading-relaxed">
+                LEMON MILK BOLD <br>
+                ABCDEFGHIJKLMNOPQRSTUVWXYZ <br>
+                1234567890
+            </p>
+        </div>
+    </section>
+
+    <section id="boat" class="py-24 px-10 max-w-7xl mx-auto">
+        <h2 class="font-lemon text-5xl mb-16 text-center font-black italic underline decoration-4">SAILBOAT</h2>
+        
+        <div class="border-[6px] border-dark overflow-hidden relative group">
+            <button onclick="prevSlide()" class="absolute left-0 h-full z-20 px-8 bg-dark/10 hover:bg-dark hover:text-light transition-all font-black text-4xl">
+                &larr;
+            </button>
+            <button onclick="nextSlide()" class="absolute right-0 h-full z-20 px-8 bg-dark/10 hover:bg-dark hover:text-light transition-all font-black text-4xl">
+                &rarr;
+            </button>
+
+            <div class="w-full h-[600px] bg-dark relative">
+                <img src="/forsale.jpg" class="slide duotone-filter" id="slide-3">
+                <img src="/im1.jpg" class="slide active duotone-filter" id="slide-0">
+                <img src="/im2.jpg" class="slide duotone-filter" id="slide-1">
+                <img src="/im3.jpg" class="slide duotone-filter" id="slide-2">
+            </div>
+
+            <div class="p-10 bg-dark text-light flex flex-col md:flex-row justify-between items-center gap-6">
+                <div>
+                    <h3 class="font-lemon text-4xl font-black"></h3>
+                    <p class="font-lemon text-xl tracking-[0.2em] opacity-70">FOR SALE | READY FOR DEPLOYMENT</p>
+                </div>
+                <button class="bg-light text-[#217381] font-lemon px-14 py-6 font-black text-2xl hover:scale-105 transition-all w-full md:w-auto border-2 border-dark">
+                    INQUIRE
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="social" class="py-32 px-10 bg-transparent text-center border-y-4 border-dark">
+    <h2 class="font-lemon text-4xl mb-12 font-black italic">Connect With Us</h2>
+    <div class="flex flex-wrap justify-center gap-6">
+        
+        <a href="#" class="flex items-center gap-3 border-4 border-dark px-8 py-6 font-lemon font-black text-xl hover:bg-dark hover:text-light transition-all">
+            <i class="fa-brands fa-facebook-f"></i> Facebook
+        </a>
+
+        <a href="#" class="flex items-center gap-3 border-4 border-dark px-8 py-6 font-lemon font-black text-xl hover:bg-dark hover:text-light transition-all">
+            <i class="fa-brands fa-instagram"></i> Instagram
+        </a>
+
+        <a href="#" class="flex items-center gap-3 border-4 border-dark px-8 py-6 font-lemon font-black text-xl hover:bg-dark hover:text-light transition-all">
+            <i class="fa-brands fa-tiktok"></i> TikTok
+        </a>
+
+        <a href="#" class="flex items-center gap-3 border-4 border-dark px-8 py-6 font-lemon font-black text-xl hover:bg-dark hover:text-light transition-all">
+            <i class="fa-brands fa-x-twitter"></i> X
+        </a>
+
+        <a href="#" class="flex items-center gap-3 border-4 border-dark px-8 py-6 font-lemon font-black text-xl hover:bg-dark hover:text-light transition-all">
+            <i class="fa-brands fa-youtube"></i> YouTube
+        </a>
+        
+    </div>
+</section>
+
+   <section id="blog" class="py-32 px-10 max-w-7xl mx-auto">
+    <h2 class="font-lemon text-5xl mb-16 font-black text-center underline">My Blog Post</h2>
+    
+    <div class="grid md:grid-cols-2 gap-0 border-4 border-dark overflow-hidden">
+        
+        <div class="p-8 md:p-16 border-b-4 md:border-b-0 md:border-r-4 border-dark hover:bg-dark hover:text-white transition-all duration-300 cursor-pointer">
+            <img src="/bp.jpg" alt="Blog Post 1" class="w-full h-64 object-cover mb-6 border-2 border-dark">
+            <h3 class="text-2xl font-bold mb-2">The Future of Smart Sailing</h3>
+            <p>Exploring how aerospace sensors are changing the way we navigate the open seas.</p>
+        </div>
+
+        <div class="p-8 md:p-16 hover:bg-dark hover:text-white transition-all duration-300 cursor-pointer">
+            <img src="/mdb.jpg" alt="Blog Post 2" class="w-full h-64 object-cover mb-6 border-2 border-dark">
+            <h3 class="text-2xl font-bold mb-2">Maintenance Tips</h3>
+            <p>Keeping your high-tech hull in pristine condition for years to come.</p>
+        </div>
+        
+    </div>
+</section>
+    <footer class="py-24 text-center bg-dark text-light border-t-4 border-dark">
+        <h2 class="font-lemon text-4xl font-black mb-6 tracking-tighter">LEMON MILK BOLD</h2>
+        <p class="font-lemon text-sm md:text-lg tracking-[0.5em] mb-12 opacity-80 break-all px-10">
+            ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890
+        </p>
+        <p class="font-lemon font-black border-4 border-light inline-block px-10 py-4 text-xl">
+            CONTACT@SMARTSAIL.COM
+        </p>
+    </footer>
+
+    <script>
+        const audio = document.getElementById('ocean-audio');
+        const splash = document.getElementById('splash');
+        const bars = document.querySelectorAll('.bar');
+
+        // AUDIO & TIDE SYNC
+        function startVoyage() {
+            splash.style.opacity = '0';
+            setTimeout(() => splash.style.display = 'none', 1000);
+            audio.play();
+            syncTide();
+        }
+
+        function syncTide() {
+            const time = Date.now() / 1000;
+            // Oscillate volume between 0.1 and 0.8 to match the 10s color animation cycle
+            const tideLevel = 0.45 + 0.35 * Math.sin(2 * Math.PI * time / 10);
+            audio.volume = tideLevel;
+
+            // Visualizer bars animation
+            bars.forEach((bar, i) => {
+                const waveEffect = Math.sin((time * 5) + i);
+                const height = 10 + (tideLevel * 20 * waveEffect);
+                bar.style.height = `${Math.abs(height)}px`;
+            });
+
+            requestAnimationFrame(syncTide);
+        }
+
+        // SLIDESHOW LOGIC
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        function showSlide(index) {
+            slides.forEach(s => s.classList.remove('active'));
+            currentSlide = (index + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+        function nextSlide() { showSlide(currentSlide + 1); }
+        function prevSlide() { showSlide(currentSlide - 1); }
+        
+        // Auto-play interval
+        setInterval(nextSlide, 4500);
+    </script>
+
+</body>
+</html>
